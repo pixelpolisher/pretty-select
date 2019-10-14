@@ -9,6 +9,7 @@ const basePath = './includes/';
 const paths = {
 	sass 	    : basePath + 'style/sass/',
 	css 	    : basePath + 'style/css/',
+  js        : basePath + 'script/',
   img       : basePath + 'style/img/',
   build     : basePath + 'build/'
 };
@@ -49,6 +50,11 @@ function sprite () {
 	.pipe(dest('./'));
 }
 
+function moveJS() {
+	return src(paths.js + 'pretty-select.js')
+		.pipe(dest(paths.build))
+}
+
 function watchSprite() {
   return sprite()
     .pipe(watch(basePath + '/img/flags/*', sprite));
@@ -59,9 +65,15 @@ function watchSass() {
     .pipe(watch(paths.sass + '**/*.scss', compileSass));
 }
 
-exports.sass = compileSass;
-exports.watchSass = watchSass;
-exports.sprite = sprite;
-exports.watchSprite = watchSprite;
-exports.watch = parallel(watchSprite, watchSass);
-exports.default = parallel(sprite, compileSass);
+function watchJS() {
+  return moveJS()
+    .pipe(watch(paths.js + 'pretty-select.js', moveJS));
+}
+
+exports.sass          = compileSass;
+exports.watchSass     = watchSass;
+exports.sprite        = sprite;
+exports.watchSprite   = watchSprite;
+exports.js						= moveJS;
+exports.watch         = parallel(watchSprite, watchSass, watchJS);
+exports.default       = parallel(sprite, compileSass, moveJS);

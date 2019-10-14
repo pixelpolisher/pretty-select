@@ -6,12 +6,21 @@
 
 html {
 	overflow-y: scroll;
-	max-width: 100vw;
-	overflow-x: hidden;
 }
 
 body {
-  background: grey;
+  color: $text-color;
+	font: 100%/#{$line-height} normal;
+	font-family: $default-font;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 500px;
 }
 
 img {
