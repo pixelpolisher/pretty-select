@@ -1,0 +1,23 @@
+{
+  "name": "pretty-select",
+  "version": "1.0.0",
+  "description": "a custom-styled html select element",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelpolisher/pretty-select.git"
+  },
+  "author": "Bart Hendrix",
+  "license": "ISC",
+  "homepage": "https://github.com/pixelpolisher/pretty-select#readme",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-svg-sprite": "^1.5.0",
+    "gulp-watch": "^5.0.1"
+  }
+}
