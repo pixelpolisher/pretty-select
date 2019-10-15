@@ -1,0 +1,15 @@
+.pretty-select {
+  $comp: &;
+
+  &--inactive {
+    #{$comp}__clone {
+      display: none;
+    }
+  }
+
+  &__option {
+    &--selected {
+      background: green;
+    }
+  }
+}
