@@ -3,6 +3,7 @@ const svgSprite   = require('gulp-svg-sprite');
 const watch       = require('gulp-watch');
 const sass        = require('gulp-sass');
 const sourcemaps  = require('gulp-sourcemaps');
+const minify 			= require('gulp-minify');
 
 const basePath = './includes/';
 
@@ -50,9 +51,10 @@ function sprite () {
 	.pipe(dest('./'));
 }
 
-function moveJS() {
+function minifyJS() {
 	return src(paths.js + 'pretty-select.js')
-		.pipe(dest(paths.build))
+    .pipe(minify({ noSource: true }))
+    .pipe(dest(paths.build))
 }
 
 function watchSprite() {
@@ -66,14 +68,14 @@ function watchSass() {
 }
 
 function watchJS() {
-  return moveJS()
-    .pipe(watch(paths.js + 'pretty-select.js', moveJS));
+  return minifyJS()
+    .pipe(watch(paths.js + 'pretty-select.js', minifyJS));
 }
 
 exports.sass          = compileSass;
 exports.watchSass     = watchSass;
 exports.sprite        = sprite;
 exports.watchSprite   = watchSprite;
-exports.js						= moveJS;
+exports.js						= minifyJS;
 exports.watch         = parallel(watchSprite, watchSass, watchJS);
-exports.default       = parallel(sprite, compileSass, moveJS);
+exports.default       = parallel(sprite, compileSass, minifyJS);
