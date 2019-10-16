@@ -8,10 +8,9 @@ const minify 			= require('gulp-minify');
 const basePath = './includes/';
 
 const paths = {
-	sass 	    : basePath + 'style/sass/',
-	css 	    : basePath + 'style/css/',
+	sass 	    : basePath + 'style/',
   js        : basePath + 'script/',
-  img       : basePath + 'style/img/',
+  img       : basePath + 'img/',
   build     : basePath + 'build/'
 };
 
