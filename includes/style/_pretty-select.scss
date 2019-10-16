@@ -1,5 +1,13 @@
 .pretty-select {
   $comp: &;
+  position: relative;
+
+  &__select {
+    opacity: 0;
+    animation: fadeIn 0.2s forwards 0.5s;
+  }
+
+  
 
   &--inactive {
     #{$comp}__clone {
@@ -12,4 +20,8 @@
       background: green;
     }
   }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
