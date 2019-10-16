@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="includes/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
     <link rel="stylesheet" href="includes/build/style.css" />
     <script type="text/javascript" src="includes/build/pretty-select-min.js"></script>
@@ -11,34 +10,41 @@
   </head>
   <body>
     <div class="wrapper">
-      <h1>Countries</h1>
-      <select class="flags">
-  			<option class="flags flags__flag--be">Belgium - Dutch</option>
-  			<option class="flags flags__flag--br">Brazil - Portugese</option>
-  			<option selected>Croatia - Croatian</option>
-  			<option>Danmark - Dansk</option>
-  			<option>France - French</option>
-  			<option>Germany - German</option>
-  			<option>Kazachstan - English</option>
-  			<option>Kazachstan - Russian</option>
-  			<option>Netherlands - Dutch</option>
-  			<option>Netherlands - English</option>
-  			<option>Norway - Norwegian</option>
-  			<option>Poland - Polish</option>
-  			<option>Slovenia - Slovenian</option>
-  			<option>Spain - Spanish</option>
-  			<option>Sweden - Swedish</option>
-  			<option>United Kingdom - English</option>
-  			<option>Continue to corporate site</option>
-  		</select>
+      <section class="section">
+        <h3 class="section__title">Planets</h3>
+        <select>
+          <option>Mercury</option>
+          <option selected>Venus</option>
+          <option>Earth</option>
+          <option>Mars</option>
+          <option>Jupiter</option>
+          <option>Saturn</option>
+          <option>Uranus</option>
+          <option>Neptune</option>
+        </select>
+      </section>
 
-      <h2>Planets</h2>
-      <select>
-        <option>Mercury</option>
-        <option>Venus</option>
-        <option>Earth</option>
-        <option>Mars</option>
-      </select>
+      <section class="section">
+        <h3 class="section__title">Countries</h3>
+        <select class="flags">
+    			<option data-icon="be">Belgium - Dutch</option>
+    			<option data-icon="br">Brazil - Portugese</option>
+    			<option data-icon="hr" selected>Croatia - Croatian</option>
+    			<option data-icon="dk">Danmark - Dansk</option>
+    			<option data-icon="fr">France - French</option>
+    			<option data-icon="de">Germany - German</option>
+    			<option data-icon="kz">Kazachstan - English</option>
+    			<option data-icon="kz">Kazachstan - Russian</option>
+    			<option data-icon="nl">Netherlands - Dutch</option>
+    			<option data-icon="nl">Netherlands - English</option>
+    			<option data-icon="no">Norway - Norwegian</option>
+    			<option data-icon="pl">Poland - Polish</option>
+    			<option data-icon="si">Slovenia - Slovenian</option>
+    			<option data-icon="es">Spain - Spanish</option>
+    			<option data-icon="se">Sweden - Swedish</option>
+    			<option data-icon="uk">United Kingdom - English</option>
+    		</select>
+      </section>
     </div>
   </body>
 </html>

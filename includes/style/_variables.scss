@@ -1,7 +1,20 @@
 // colors
-$text-color:                #021b3d;
+$c-text:                    #021b3d;
+$c-blusher:                 #f1f2f4;
+$c-gray:                    #dcdee0;
 
 // typography
 $default-font:              Arial, sans-serif;
 $emphasis-font:             Tahoma, Arial, sans-serif;
 $line-height:               1.6em;
+
+// animations and transitions
+$a-duration:                0.2s;
+
+/* ------------------------- mixins ------------------------- */
+
+@mixin pseudo-content {
+  content: "";
+  display: block;
+  position: absolute;
+}
