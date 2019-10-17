@@ -1,0 +1,29 @@
+// gather the relevant info from the generated spritesheet and return it in the form of a sprite mixin
+$sprite: map-get($spritesheet, sprite) !default;
+
+@function sprite-attr($icon, $attr) {
+	$newIcon: map-get($spritesheet, $icon);
+	@if $newIcon == null {
+		@warn "Can't find an icon with the name #{$icon}";
+	}
+	@return map-get($newIcon, $attr);
+}
+
+@function icon-attr($icon) {
+	$attr: (
+		width: sprite-attr($icon, width),
+		height: sprite-attr($icon, height),
+		xPos: sprite-attr($icon, backgroundX),
+		yPos: sprite-attr($icon, backgroundY)
+	);
+	@return $attr;
+}
+
+@mixin sprite($icon) {
+	background-image: url(map-get($sprite, svgPath));
+
+	$iconMap: icon-attr($icon);
+  width: map-get($iconMap, width);
+  height: map-get($iconMap, height);
+  background-position: (map-get($iconMap, xPos)-5) (map-get($iconMap, yPos)-5);
+}

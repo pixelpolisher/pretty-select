@@ -1,0 +1,14 @@
+.wrapper {
+  margin: 0 auto;
+  max-width: 980px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.section {
+  margin: 15px;
+
+  &__title {
+    margin-bottom: 0.5em;
+  }
+}
