@@ -8,6 +8,7 @@ function prettySelect(select) {
   var wrapper = document.createElement('div');
   wrapper.setAttribute('class', selectClassNames);
   wrapper.classList.add(comp);
+  wrapper.setAttribute('tabindex', '0');
   select.parentNode.insertBefore(wrapper, select);
   select.classList.add(comp + '__select');
   wrapper.appendChild(select);
@@ -84,6 +85,33 @@ function prettySelect(select) {
 
     // Clicked outside.
     wrapper.classList.remove(comp + '--active');
+  });
+
+  wrapper.addEventListener('keydown', function(e) {
+    switch(e.keyCode) {
+      case 32:
+      case 13:
+        // space or enter
+
+        break;
+      case 40:
+        // down
+
+        break;
+      case 38:
+        // up
+
+        break;
+      case 27:
+        // esc
+
+        break;
+      case 9:
+        // tab
+        
+      default:
+        break;
+    }
   });
 
   function checkForIcon(nativeElement, clonedElement) {
