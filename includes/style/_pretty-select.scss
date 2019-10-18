@@ -32,8 +32,7 @@
   }
 
   &__select {
-    position: fixed;
-    opacity: 0.5;
+    display: none;
   }
 
   &__current {
@@ -95,10 +94,11 @@
     position: relative;
 
     &:hover,
-    &--selected {
+    &--focus {
       background-color: $c-gray;
     }
 
+    &--selected,
     &--selected:hover {
       background-color: darken($c-gray, 5%);
     }
@@ -111,8 +111,7 @@
   $comp: '.pretty-select';
 
   #{$comp}__list {
-    display: grid;
-    grid-template-columns: repeat(2, 0.5fr);
+    columns: 2;
   }
 
   #{$comp}__current,
