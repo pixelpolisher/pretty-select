@@ -4,6 +4,8 @@ const watch       = require('gulp-watch');
 const sass        = require('gulp-sass');
 const sourcemaps  = require('gulp-sourcemaps');
 const minify 			= require('gulp-minify');
+const babel 			= require('gulp-babel');
+const plumber 		= require('gulp-plumber');
 
 const basePath = './includes/';
 
@@ -52,6 +54,15 @@ function sprite () {
 
 function minifyJS() {
 	return src(paths.js + 'pretty-select.js')
+		.pipe(plumber())
+    // Transpile the JS code using Babel's preset-env.
+    .pipe(babel({
+      presets: [
+        ['@babel/env', {
+          modules: false
+        }]
+      ]
+    }))
     .pipe(minify({ noSource: true }))
     .pipe(dest(paths.build))
 }
