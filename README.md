@@ -17,4 +17,4 @@ Compiles the svg files into a single svg and generates the relevant scss
 transpiles the es2015 in the js files, bundles all relevant scripts into one, and minifies the result
 
 ### `gulp watch`
-Watches all files in the sass and img folders, watches the pretty-select.js file
+Watches all files in the sass, img, and js folders
