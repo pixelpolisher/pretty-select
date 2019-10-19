@@ -1,4 +1,4 @@
-// based on https://www.w3schools.com/howto/howto_custom_select.asp
+// loosely based on https://www.w3schools.com/howto/howto_custom_select.asp
 
 prettySelect = (select) => {
   const comp = 'pretty-select';
@@ -10,8 +10,9 @@ prettySelect = (select) => {
   const current = document.createElement('div');
   const list = document.createElement('ul');
 
-  // wrap the select in a div and add the relevant classnames
   const selectClassNames = select.getAttribute('class');
+
+  // wrap the select in a div and add the relevant classnames
   wrapper.setAttribute('class', selectClassNames);
   wrapper.classList.add(comp);
   wrapper.setAttribute('tabindex', '0');
@@ -149,20 +150,20 @@ prettySelect = (select) => {
       case 9:
         // esc or tab
         toggleSelect(false);
-        resetItems(items, focusedClass);
+        resetItems();
         break;
       default:
         break;
     }
 
-    resetItems () => {
+    resetItems = () => {
       for(item of items) {
         item.classList.remove(focusedClass);
       }
     }
   });
 
-  toggleSelect = (state) => {
+  function toggleSelect(state) {
     if(state) {
       wrapper.classList.add(activeClass);
       isOpen = true;
@@ -172,9 +173,9 @@ prettySelect = (select) => {
     }
   }
 
-  checkForIcon = (nativeElement, clonedElement) => {
+  function checkForIcon(nativeElement, clonedElement) {
     // check if the native option item has a data-icon attribute
-    // if so, add an extra dom element and give it the same classname as the data-icon value
+    // if so, add an extra dom element to the cloned list item
     const dataIcon = nativeElement.getAttribute('data-icon');
     if(dataIcon != null) {
       const iconEl = document.createElement('span');

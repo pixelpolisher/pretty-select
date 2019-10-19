@@ -1,8 +1,11 @@
 .wrapper {
   margin: 0 auto;
   max-width: 980px;
-  display: flex;
-  flex-flow: row wrap;
+
+  @media(min-width: $mq-md) {
+    display: flex;
+    flex-flow: row wrap;
+  }
 }
 
 .section {
