@@ -11,6 +11,10 @@ $line-height:               1.6em;
 // animations and transitions
 $a-duration:                0.2s;
 
+// media queries
+$mq-sm:                     520px;
+$mq-md:                     680px;
+
 /* ------------------------- mixins ------------------------- */
 
 @mixin pseudo-content {

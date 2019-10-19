@@ -16,6 +16,10 @@
     }
   }
 
+  &:focus {
+    outline: 1px dotted $c-text;
+  }
+
   &--active {
     z-index: 999;
 
@@ -111,7 +115,9 @@
   $comp: '.pretty-select';
 
   #{$comp}__list {
-    columns: 2;
+    @media(min-width: $mq-sm) {
+      columns: 2;
+    }
   }
 
   #{$comp}__current,
