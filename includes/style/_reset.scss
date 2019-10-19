@@ -9,18 +9,10 @@ html {
 }
 
 body {
-  color: $text-color;
-	font: 100%/#{$line-height} normal;
+  color: $c-text;
+	font: 90%/#{$line-height} normal;
 	font-family: $default-font;
-  display: flex;
   min-height: 100vh;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.wrapper {
-  margin: 0 auto;
-  max-width: 500px;
 }
 
 img {

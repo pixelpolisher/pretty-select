@@ -1,0 +1,162 @@
+.pretty-select {
+  $comp: &;
+
+  position: relative;
+  cursor: pointer;
+
+  &:hover,
+  &--active {
+
+    #{$comp}__current {
+      background: darken($c-blusher, 10%);
+
+      &::before {
+        background: darken($c-gray, 10%);
+      }
+    }
+  }
+
+  &:focus {
+    outline: 1px dotted $c-text;
+  }
+
+  &--active {
+    z-index: 999;
+
+    #{$comp}__current::after {
+      transform: rotate(180deg) scaleX(0.7);
+    }
+
+    #{$comp}__list {
+      top: 100%;
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      transition-delay: 0s, 0s, 0s;
+    }
+  }
+
+  &__select {
+    display: none;
+  }
+
+  &__current {
+    background: $c-blusher;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 65px 0 16px;
+    border-radius: 4px;
+    transition: background-color $a-duration;
+
+    &::before,
+    &::after {
+      @include pseudo-content;
+      right: 0;
+      top: 0;
+      z-index: 2;
+    }
+
+    &::before {
+      width: 45px;
+      bottom: 0;
+      background-color: $c-gray;
+      border-radius: 0 4px 4px 0;
+      transition: background-color $a-duration;
+    }
+
+    &::after {
+      border: 8px solid transparent;
+      transform: scaleX(0.7);
+      border-top-color: $c-text;
+      top: 14px;
+      right: 14px;
+      transition: transform 0.25s;
+      transform-origin: 50% 4px;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    position: absolute;
+    top: -999em;
+    margin: 2px 0 0;
+    min-width: 100%;
+    border: 1px solid $c-gray;
+    background-color: $c-blusher;
+    opacity: 0;
+    transform-origin: 50% 0;
+    transform: scale(0.75) translateY(-21px);
+    transition: top 0s, transform 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
+    transition-delay: 0.2s, 0s, 0s;
+  }
+
+  &__item {
+    transition: background-color $a-duration;
+    min-height: 1em;
+    padding: 5px 20px;
+    line-height: $line-height;
+    white-space: nowrap;
+    position: relative;
+
+    &:hover,
+    &--focus {
+      background-color: $c-gray;
+    }
+
+    &--selected,
+    &--selected:hover {
+      background-color: darken($c-gray, 5%);
+    }
+  }
+}
+
+/* ----------------------------- the variation with the flags -----------------------------  */
+
+.pretty-select.flags {
+  $comp: '.pretty-select';
+
+  #{$comp}__list {
+    @media(min-width: $mq-sm) {
+      columns: 2;
+    }
+  }
+
+  #{$comp}__current,
+  #{$comp}__item {
+    padding-left: 45px;
+  }
+
+  #{$comp}__icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+  }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@mixin flag($country-code) {
+  .pretty-select__icon--#{$country-code} { @include sprite(flag-#{$country-code}); }
+  // generates .pretty-select__icon--nl { @include sprite(flag-nl); }
+}
+
+@include flag(ae);
+@include flag(be);
+@include flag(br);
+@include flag(de);
+@include flag(dk);
+@include flag(es);
+@include flag(fr);
+@include flag(hr);
+@include flag(in);
+@include flag(kz);
+@include flag(nl);
+@include flag(no);
+@include flag(pl);
+@include flag(qa);
+@include flag(si);
+@include flag(se);
+@include flag(uk);
