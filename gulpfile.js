@@ -6,6 +6,7 @@ const sourcemaps  = require('gulp-sourcemaps');
 const minify 			= require('gulp-minify');
 const babel 			= require('gulp-babel');
 const plumber 		= require('gulp-plumber');
+const concat		 	= require('gulp-concat');
 
 const basePath = './includes/';
 
@@ -53,7 +54,7 @@ function sprite () {
 }
 
 function minifyJS() {
-	return src(paths.js + 'pretty-select.js')
+	return src([paths.js + 'script.js', paths.js + 'pretty-select.js'])
 		.pipe(plumber())
     // Transpile the JS code using Babel's preset-env.
     .pipe(babel({
@@ -63,7 +64,13 @@ function minifyJS() {
         }]
       ]
     }))
-    .pipe(minify({ noSource: true }))
+		.pipe(concat('bundle.js'))
+    .pipe(minify({
+			noSource: true,
+			ext: {
+	          min:'.js'
+	        }
+		}))
     .pipe(dest(paths.build))
 }
 
