@@ -1,5 +1,5 @@
 ## Demo
-See [github.pixelpolisher.com/pretty-select](http://github.pixelpolisher.com/select) for a demo.
+See [github.pixelpolisher.com/pretty-select](http://github.pixelpolisher.com/pretty-select) for a demo.
 
 ## Available Scripts
 In the project directory, you can run:
