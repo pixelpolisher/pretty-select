@@ -40,7 +40,9 @@ prettySelect = (select) => {
   list.classList.add(comp + '__list');
 
   // build the list of items in the ul
-  for (option of select) {
+  // a for of loop would have been preferable, but throws errors in ie11 after transpilation
+  for (let i=0; i<select.length; i++) {
+    option = select[i];
 
     // For each option in the original select element,
     // create a new DIV that will act as an option item:
@@ -59,13 +61,11 @@ prettySelect = (select) => {
     optionItem.addEventListener('click', function(e) {
       // When an item is clicked, update the original select box,
       // and the selected item
-      let iteration = -1;
-
-      for (option of select) {
-        iteration ++;
+      for (let j=0; j<select.length; j++) {
+        option = select[j];
 
         if (option.textContent == this.textContent) {
-          select.selectedIndex = iteration;
+          select.selectedIndex = j;
           current.innerHTML = this.innerHTML;
           const selectedOption = wrapper.querySelector('.' + comp + '__item--selected');
           selectedOption.classList.remove(comp + '__item--selected');
@@ -156,9 +156,9 @@ prettySelect = (select) => {
         break;
     }
 
-    resetItems = () => {
-      for(item of items) {
-        item.classList.remove(focusedClass);
+    function resetItems() {
+      for(let i=0; i<items.length; i++) {
+        items[i].classList.remove(focusedClass);
       }
     }
   });
@@ -181,7 +181,8 @@ prettySelect = (select) => {
       const iconEl = document.createElement('span');
       iconEl.classList.add(comp + '__icon');
       iconEl.classList.add(comp + '__icon--' + dataIcon);
-      clonedElement.prepend(iconEl);
+      // IE11 doesn't support prepend
+      clonedElement.insertBefore(iconEl, clonedElement.firstChild);
     }
   }
 }
