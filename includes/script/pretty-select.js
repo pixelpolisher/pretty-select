@@ -1,8 +1,8 @@
 // loosely based on https://www.w3schools.com/howto/howto_custom_select.asp
 
 prettySelect = (select) => {
-  const comp = 'pretty-select';
-  const activeClass = comp + '--active';
+  const self = 'pretty-select';
+  const activeClass = self + '--active';
   let isOpen = false;
 
   // create the new nodes
@@ -10,19 +10,20 @@ prettySelect = (select) => {
   const current = document.createElement('div');
   const list = document.createElement('ul');
 
-  const selectClassNames = select.getAttribute('class');
+  let selectClassNames = null;
+  select.hasAttribute('class') ? selectClassNames = select.getAttribute('class') : selectClassNames = '';
 
   // wrap the select in a div and add the relevant classnames
   wrapper.setAttribute('class', selectClassNames);
-  wrapper.classList.add(comp);
+  wrapper.classList.add(self);
   wrapper.setAttribute('tabindex', '0');
   select.parentNode.insertBefore(wrapper, select);
-  select.classList.add(comp + '__select');
+  select.classList.add(self + '__select');
   wrapper.appendChild(select);
 
   // add the selected option to the wrapper as a a separate div
   // refer to this as current because it shows the currently selected option
-  current.classList.add(comp + '__current');
+  current.classList.add(self + '__current');
   current.innerHTML = select.options[select.selectedIndex].innerHTML;
   checkForIcon(select.options[select.selectedIndex], current);
   wrapper.appendChild(current);
@@ -34,10 +35,8 @@ prettySelect = (select) => {
 
   // next is the cloned list of options
   // duplicate any existing class names
-  if(selectClassNames) {
-    list.setAttribute('class', selectClassNames);
-  }
-  list.classList.add(comp + '__list');
+  list.setAttribute('class', selectClassNames);
+  list.classList.add(self + '__list');
 
   // build the list of items in the ul
   // a for of loop would have been preferable, but throws errors in ie11 after transpilation
@@ -48,12 +47,12 @@ prettySelect = (select) => {
     // create a new DIV that will act as an option item:
     const optionItem = document.createElement('li');
     optionItem.innerHTML = option.innerHTML;
-    optionItem.classList.add(comp + '__item');
+    optionItem.classList.add(self + '__item');
     checkForIcon(option, optionItem);
 
     // highlight the selected item
     if(option == select.options[select.selectedIndex]) {
-      optionItem.classList.add(comp + '__item--selected');
+      optionItem.classList.add(self + '__item--selected');
     }
     list.appendChild(optionItem);
     wrapper.appendChild(list);
@@ -67,9 +66,9 @@ prettySelect = (select) => {
         if (option.textContent == this.textContent) {
           select.selectedIndex = j;
           current.innerHTML = this.innerHTML;
-          const selectedOption = wrapper.querySelector('.' + comp + '__item--selected');
-          selectedOption.classList.remove(comp + '__item--selected');
-          this.classList.add(comp + '__item--selected');
+          const selectedOption = wrapper.querySelector('.' + self + '__item--selected');
+          selectedOption.classList.remove(self + '__item--selected');
+          this.classList.add(self + '__item--selected');
           break;
         }
       }
@@ -98,9 +97,9 @@ prettySelect = (select) => {
   });
 
   wrapper.addEventListener('keydown', (e) => {
-    const focusedClass = comp + '__item--focus';
-    const focusedOption = list.querySelector('.' + focusedClass) || list.querySelector('.' + comp + '__item--selected');
-    const items = list.querySelectorAll('.' + comp + '__item');
+    const focusedClass = self + '__item--focus';
+    const focusedOption = list.querySelector('.' + focusedClass) || list.querySelector('.' + self + '__item--selected');
+    const items = list.querySelectorAll('.' + self + '__item');
 
     switch(e.keyCode) {
       case 32:
@@ -179,8 +178,8 @@ prettySelect = (select) => {
     const dataIcon = nativeElement.getAttribute('data-icon');
     if(dataIcon != null) {
       const iconEl = document.createElement('span');
-      iconEl.classList.add(comp + '__icon');
-      iconEl.classList.add(comp + '__icon--' + dataIcon);
+      iconEl.classList.add(self + '__icon');
+      iconEl.classList.add(self + '__icon--' + dataIcon);
       // IE11 doesn't support prepend
       clonedElement.insertBefore(iconEl, clonedElement.firstChild);
     }
