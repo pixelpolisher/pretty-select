@@ -54,7 +54,8 @@ function sprite () {
 }
 
 function minifyJS() {
-	return src([paths.js + 'script.js', paths.js + 'pretty-select.js'])
+	// return src([paths.js + 'script.js', paths.js + 'pretty-select.js'])
+	return src([paths.js + 'pretty-select.js'])
 		.pipe(plumber())
     // Transpile the JS code using Babel's preset-env.
     .pipe(babel({
@@ -64,12 +65,11 @@ function minifyJS() {
         }]
       ]
     }))
-		.pipe(concat('bundle.js'))
-    .pipe(minify({
+		.pipe(minify({
 			noSource: true,
 			ext: {
-	          min:'.js'
-	        }
+		   min:'.js'
+	   }
 		}))
     .pipe(dest(paths.build))
 }
@@ -94,5 +94,6 @@ exports.watchSass     = watchSass;
 exports.sprite        = sprite;
 exports.watchSprite   = watchSprite;
 exports.js						= minifyJS;
+exports.watchJS				= watchJS;
 exports.watch         = parallel(watchSprite, watchSass, watchJS);
 exports.default       = parallel(sprite, compileSass, minifyJS);
